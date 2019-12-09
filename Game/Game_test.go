@@ -1,6 +1,7 @@
 package Game
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -33,15 +34,8 @@ func TestCardCount(t *testing.T) {
 
 func TestPlay(t *testing.T) {
 	a := new(GamePlay)
-	a.Init()
-
 	a.Lottery()
-	/*
-		fmt.Println(a.GetPlayerPoints())
-		fmt.Println(a.GetDealerPoints())
-		fmt.Println(a.GetCardCount())
-		fmt.Println("測試成功2")
-	*/
+	fmt.Println("開獎結束")
 }
 
 func TestShuffle(t *testing.T) {

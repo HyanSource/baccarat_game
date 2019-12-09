@@ -1,6 +1,9 @@
 package Game
 
 import (
+	"20191118User_Manage/Player"
+	"20191118User_Manage/Result"
+	"20191118User_Manage/Rule"
 	"fmt"
 	"math/rand"
 )
@@ -32,7 +35,7 @@ func (t *GamePlay) Draw() int {
 func (t *GamePlay) Shuffle() {
 
 	for _, k := range t.AllCards {
-		temp := k //紀錄本身
+		temp := k
 		r := rand.Intn(len(t.AllCards))
 		k = t.AllCards[r] //取隨機
 		t.AllCards[r] = temp
@@ -65,42 +68,40 @@ func (t *GamePlay) Lottery() string {
 	t.Init()
 	t.Shuffle()
 
-	var Player = new(CardStruct)
-	var Dealer = new(CardStruct)
+	var playerget = new(Player.CardStruct)
+	var dealerget = new(Player.CardStruct)
 
 	//初始化
-	Player.Init()
-	Dealer.Init()
+	playerget.Init()
+	dealerget.Init()
 
 	//放入前兩張牌
 
-	Player.SetCards(t.Draw())
-	Dealer.SetCards(t.Draw())
-	Player.SetCards(t.Draw())
-	Dealer.SetCards(t.Draw())
+	playerget.SetCards(t.Draw())
+	dealerget.SetCards(t.Draw())
+	playerget.SetCards(t.Draw())
+	dealerget.SetCards(t.Draw())
 
-	fmt.Println(Player.Cards)
-	fmt.Println(Dealer.Cards)
+	fmt.Println(playerget.Cards)
+	fmt.Println(dealerget.Cards)
 
 	//放入閒家第三張牌
-	if Player_Draw(Player) {
-		fmt.Println("閒三")
-		Player.SetCards(t.Draw())
+	if Rule.Player_Draw(playerget.GetPoints(2)) {
+		playerget.SetCards(t.Draw())
 	}
 
-	if Dealer_Draw(Player, Dealer) {
-		fmt.Println("莊三")
-		Dealer.SetCards(t.Draw())
+	if Rule.Dealer_Draw(playerget.GetPoints(3), dealerget.GetPoints(2)) {
+		dealerget.SetCards(t.Draw())
 	}
 
-	fmt.Println(Player.Cards)
-	fmt.Println(Dealer.Cards)
+	fmt.Println(playerget.Cards)
+	fmt.Println(dealerget.Cards)
 
-	fmt.Println("閒家點數:", Player.GetPoints(3))
-	fmt.Println("莊家點數:", Dealer.GetPoints(3))
 	//三種情況 4張 5張 6張
 
-	fmt.Println("開獎成功")
+	R := &Result.Result{PlayerPoints: 1, DealerPoints: 1, PlayerCards: [3]int{1, 2, 3}, DealerCards: [3]int{4, 5, 6}, Win: "莊家勝"}
 
-	return "" //回傳格式 閒家*3 莊家*3 閒家點數 莊家點數 中獎位置
+	R.GameMarshal()
+
+	return ""
 }
