@@ -1,11 +1,12 @@
 package Game
 
 import (
-	"20191118User_Manage/Player"
-	"20191118User_Manage/Result"
-	"20191118User_Manage/Rule"
 	"fmt"
 	"math/rand"
+
+	"github.com/Hyan/baccarat_server/Player"
+	"github.com/Hyan/baccarat_server/Result"
+	"github.com/Hyan/baccarat_server/Rule"
 )
 
 type IGamePlay interface {

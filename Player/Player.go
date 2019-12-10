@@ -1,8 +1,9 @@
 package Player
 
 import (
-	"20191118User_Manage/Rule"
 	"strconv"
+
+	"github.com/Hyan/baccarat_server/Rule"
 )
 
 type ICards interface {
