@@ -55,9 +55,6 @@ func (t *GameTable) Lottery() []byte {
 	playerget.SetCards(t.CardManage.Draw())
 	dealerget.SetCards(t.CardManage.Draw())
 
-	fmt.Println(playerget.Cards)
-	fmt.Println(dealerget.Cards)
-
 	//放入閒家第三張牌
 	if Rule.Player_Draw(playerget.GetPoints(2)) {
 		playerget.SetCards(t.CardManage.Draw())
@@ -66,9 +63,6 @@ func (t *GameTable) Lottery() []byte {
 	if Rule.Dealer_Draw(playerget.GetPoints(3), dealerget.GetPoints(2)) {
 		dealerget.SetCards(t.CardManage.Draw())
 	}
-
-	fmt.Println(playerget.Cards)
-	fmt.Println(dealerget.Cards)
 
 	//三種情況 4張 5張 6張
 

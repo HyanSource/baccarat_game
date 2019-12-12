@@ -68,8 +68,8 @@ func baccaratfunc(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(""))
 		fmt.Fprintln(w, "")
 	*/
-
-	w.Write(Game.GetInstance().Lottery())
-
+	var t = Game.GetInstance().Lottery()
+	w.Write(t)
+	fmt.Println(string(t))
 	//應該是沒有去做接口Init的關係
 }
