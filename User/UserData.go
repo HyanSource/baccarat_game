@@ -1,6 +1,9 @@
 package User
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type Data struct {
 	ID    int
@@ -8,36 +11,50 @@ type Data struct {
 	Money int
 }
 
-var Users map[int]Data
+/////////////////////////////////
 
-func init() {
-	Users = make(map[int]Data, 100)
+var (
+	Instance *UsersInstance
+	Once     sync.Once
+)
+
+type UsersInstance struct {
+	Users map[int]Data
 }
 
-func AddUser(ClientID int, id int, Name string, Money int) bool {
+func GetInstance() *UsersInstance {
 
-	if _, ok := Users[ClientID]; ok {
+	Once.Do(func() {
+		Instance.Users = make(map[int]Data, 100)
+	})
+
+	return Instance
+}
+
+func (t *UsersInstance) AddUser(ClientID int, id int, Name string, Money int) bool {
+
+	if _, ok := t.Users[ClientID]; ok {
 		return false
 	} else {
-		Users[ClientID] = Data{id, Name, Money}
+		t.Users[ClientID] = Data{id, Name, Money}
 		return true
 	}
 
 }
 
-func DelUser(ClientID int) {
+func (t *UsersInstance) DelUser(ClientID int) {
 
-	delete(Users, ClientID)
+	delete(t.Users, ClientID)
 }
 
-func ContainsUser(ClientID int) bool {
+func (t *UsersInstance) ContainsUser(ClientID int) bool {
 
-	_, ok := Users[ClientID]
+	_, ok := t.Users[ClientID]
 	return ok
 }
 
-func AllUsersData() {
-	for k, v := range Users {
+func (t *UsersInstance) AllUsersData() {
+	for k, v := range t.Users {
 		fmt.Println("clientID:", k, " Data:", v)
 	}
 }
