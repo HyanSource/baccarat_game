@@ -66,7 +66,7 @@ func (t *GameTable) Lottery() []byte {
 
 	//三種情況 4張 5張 6張
 
-	R := &Result.Result{PlayerPoints: playerget.GetPoints(3), DealerPoints: dealerget.GetPoints(3), PlayerCards: playerget.Cards, DealerCards: dealerget.Cards, Win: Rule.WinType(playerget.GetPoints(3), dealerget.GetPoints(3))}
+	R := &Result.Result{PlayerPoints: playerget.GetPoints(3), DealerPoints: dealerget.GetPoints(3), PlayerCards: playerget.Cards, DealerCards: dealerget.Cards, Win: Rule.WinType(playerget.GetPoints(3), dealerget.GetPoints(3)), Desk: t.CardManage.CardsCount()}
 
 	return R.GameMarshal()
 }

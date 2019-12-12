@@ -12,6 +12,7 @@ type Result struct {
 	PlayerCards  [3]int `json:"playercards"`
 	DealerCards  [3]int `json:"dealercards"`
 	Win          string `json:"win"`
+	Desk         int    `json:"desk"`
 }
 
 //序列化

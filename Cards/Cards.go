@@ -5,13 +5,18 @@ import (
 )
 
 type ICardManage interface {
-	Shuffle()  //洗牌
-	Init()     //初始化
-	Draw() int //抽牌方法
+	Shuffle()        //洗牌
+	Init()           //初始化
+	Draw() int       //抽牌方法
+	CardsCount() int //牌組剩餘張數
 }
 
 type TableCard struct {
 	AllCards []int //公共牌
+}
+
+func (t *TableCard) CardsCount() int {
+	return len(t.AllCards)
 }
 
 //抽牌的方法
@@ -47,15 +52,13 @@ func (t *TableCard) Init() {
 	//copy
 	//移除元素 [1:]從1到上限
 
-	//t.AllCards = make([]int, 0, 208)
-
-	//if len(t.AllCards) < 104 {
-	for i := 0; i < 4; i++ {
-		for j := 0; j < 52; j++ {
-			t.AllCards = append(t.AllCards, j) //增加
+	if len(t.AllCards) < 104 {
+		for i := 0; i < 4; i++ {
+			for j := 0; j < 52; j++ {
+				t.AllCards = append(t.AllCards, j) //增加
+			}
 		}
-	}
 
-	//}
+	}
 
 }
