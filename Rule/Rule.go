@@ -19,10 +19,6 @@ func Point(cardnum int) int {
 //閒家抽第三張牌的方法
 func Player_Draw(PlayerNowPoint int) bool {
 
-	if PlayerNowPoint != 2 {
-		panic("不是第二張牌的情況")
-	}
-
 	switch PlayerNowPoint {
 	case 0, 1, 2, 3, 4, 5:
 		return true
@@ -35,10 +31,6 @@ func Player_Draw(PlayerNowPoint int) bool {
 
 //莊家抽第三張牌的方法
 func Dealer_Draw(PlayerNowPoint int, DealerNowPoint int) bool {
-
-	if DealerNowPoint != 2 {
-		panic("不是第二張牌的情況")
-	}
 
 	switch DealerNowPoint {
 	case 0, 1, 2:

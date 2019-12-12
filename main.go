@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gorilla/websocket"
+
+	"github.com/Hyan/baccarat_server/Game"
 )
 
 //websocket的練習 百家樂製作
@@ -21,6 +23,7 @@ func main() {
 
 	r.HandleFunc("/echo", echofunc)
 	r.HandleFunc("/", routerfunc)
+	r.HandleFunc("/baccarat", baccaratfunc)
 
 	http.ListenAndServe(":8080", r)
 
@@ -53,5 +56,20 @@ func echofunc(w http.ResponseWriter, r *http.Request) {
 }
 
 func routerfunc(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("hello"))
 	http.ServeFile(w, r, "websocket.html")
+}
+
+//回傳baccarat資料
+func baccaratfunc(w http.ResponseWriter, r *http.Request) {
+
+	//r=客戶端的請求 w=服務器做出的回應
+	/*
+		w.Write([]byte(""))
+		fmt.Fprintln(w, "")
+	*/
+
+	w.Write(Game.GetInstance().Lottery())
+
+	//應該是沒有去做接口Init的關係
 }
