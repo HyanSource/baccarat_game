@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/Hyan/baccarat_server/Cards"
-	"github.com/Hyan/baccarat_server/Player"
-	"github.com/Hyan/baccarat_server/Result"
-	"github.com/Hyan/baccarat_server/Rule"
+	"github.com/HyanSource/baccarat_server/Cards"
+	"github.com/HyanSource/baccarat_server/Player"
+	"github.com/HyanSource/baccarat_server/Result"
+	"github.com/HyanSource/baccarat_server/Rule"
 )
 
 var (

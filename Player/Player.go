@@ -3,7 +3,7 @@ package Player
 import (
 	"strconv"
 
-	"github.com/Hyan/baccarat_server/Rule"
+	"github.com/HyanSource/baccarat_server/Rule"
 )
 
 type ICards interface {

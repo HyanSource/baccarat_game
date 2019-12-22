@@ -6,7 +6,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"github.com/Hyan/baccarat_server/Game"
+	"github.com/HyanSource/baccarat_server/Game"
 )
 
 //websocket的練習 百家樂製作
