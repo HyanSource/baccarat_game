@@ -6,11 +6,24 @@ import (
 )
 
 func TestA(t *testing.T) {
-	fmt.Println("開始")
 	v, err := Get("t") // Get->抓1個值 其他的應該要不同method
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(string(v))
-	fmt.Println("結束")
+}
+
+func TestB(t *testing.T) {
+	v, err := HGet("Hyan", "A")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(v))
+}
+
+//Benchmark
+func BenchmarkA(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		fmt.Println(i)
+	}
 }

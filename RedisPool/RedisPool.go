@@ -56,6 +56,7 @@ func close() {
 	}()
 }
 
+//string用
 func Get(key string) ([]byte, error) {
 
 	conn := Pool.Get()
@@ -65,6 +66,20 @@ func Get(key string) ([]byte, error) {
 	data, err := redis.Bytes(conn.Do("GET", key))
 	if err != nil {
 		return data, fmt.Errorf("error get key %s: %v", key, err)
+	}
+	return data, err
+}
+
+//Hash用
+func HGet(key string, field string) ([]byte, error) {
+
+	conn := Pool.Get()
+	defer conn.Close()
+
+	var data []byte
+	data, err := redis.Bytes(conn.Do("HGet", key, field))
+	if err != nil {
+		return data, fmt.Errorf("error hget key %s: %v", key, err)
 	}
 	return data, err
 }
