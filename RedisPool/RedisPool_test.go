@@ -21,7 +21,7 @@ func TestB(t *testing.T) {
 	fmt.Println(string(v))
 }
 
-//Benchmark
+//Benchmark 基準測試
 func BenchmarkA(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		fmt.Println(i)
