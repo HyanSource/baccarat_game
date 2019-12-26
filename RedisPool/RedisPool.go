@@ -1,8 +1,6 @@
 package RedisPool
 
 import (
-	"fmt"
-	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -19,7 +17,6 @@ func init() {
 	redisHost := ":6379"
 	Pool = newPool(redisHost)
 	close()
-	log.Println("初始化成功")
 }
 
 func newPool(server string) *redis.Pool {
@@ -56,6 +53,7 @@ func close() {
 	}()
 }
 
+/*
 //string用
 func Get(key string) ([]byte, error) {
 
@@ -82,11 +80,5 @@ func HGet(key string, field string) ([]byte, error) {
 		return data, fmt.Errorf("error hget key %s: %v", key, err)
 	}
 	return data, err
-}
-
-/*
-func main() {
-	test, err := Get("test")
-	fmt.Println(test, err)
 }
 */
